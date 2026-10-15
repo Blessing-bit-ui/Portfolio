@@ -4,6 +4,9 @@ import welcome from './assets/Group 8.png'
 import dashboard from './assets/iPhone 16 & 17 Pro Max - 10.png'
 import onboarding from './assets/iPhone 16 & 17 Pro Max - 13.png'
 import directory from './assets/Screenshot 2026-10-14 073300.png'
+import moneyContact from './assets/Screenshot 2026-10-15 192857.png'
+import moneyBenefits from './assets/Screenshot 2026-10-15 192919.png'
+import moneySavings from './assets/Screenshot 2026-10-15 193015.png'
 import refine from './assets/WhatsApp Image 2026-09-07 at 5.51.38 PM.jpeg'
 import fashion from './assets/WhatsApp Image 2026-09-07 at 5.54.39 PM.jpeg'
 import woman from './assets/WhatsApp Image 2026-09-10 at 2.11.11 PM.jpeg'
@@ -43,7 +46,8 @@ function App() {
           <div className="hero-actions"><a className="primary-link" href="#work">View My Projects <span aria-hidden="true">↗</span></a><a className="text-link" href="#connect">Let's Connect <span aria-hidden="true">↗</span></a></div>
         </section>
         <section className="work wrap" id="work">
-          <div className="section-heading"><h2>Selected work</h2><span>01 — 02 / DIGITAL EXPERIENCES</span></div>
+          <div className="section-heading"><h2>Selected work</h2><span>01 — 03 / DIGITAL EXPERIENCES</span></div>
+
           <article className="project">
             <div className="fitness-stage">
               <div className="stage-label"><span>FITBUDDY</span><span>MOVE WITH PURPOSE ↗</span></div>
@@ -62,6 +66,21 @@ function App() {
               <img src={directory} alt="African business directory website featuring a map of Africa and a business search" loading="lazy" />
             </button>
             <div className="project-caption"><div><h3>African business directory</h3><p>A digital space for discovery and connection.</p></div><span className="tag">Web design</span></div>
+          </article>
+          <article className="project money-project">
+            <div className="money-stage">
+              <div className="stage-label"><span>MONEY PLANNER</span><span>WEBSITE / SELECTED SCREENS</span></div>
+              <button className="website-preview" onClick={() => openImage(moneySavings, 'Money Planner — savings guidance')} aria-label="Enlarge Money Planner savings page">
+                <span className="browser-bar" aria-hidden="true"><span>● ● ●</span><span>Money Planner / Savings</span><span>↗</span></span>
+                <img src={moneySavings} alt="Money Planner savings page with savings guidance and related topics" loading="lazy" />
+              </button>
+              <div className="website-details">
+                {[{ image: moneyBenefits, title: 'Benefits', description: 'Money Planner benefits page with information cards for different circumstances' }, { image: moneyContact, title: 'Contact', description: 'Money Planner contact page with support information and topic navigation' }].map(({ image, title, description }) => (
+                  <button key={title} onClick={() => openImage(image, `Money Planner — ${title}`)} aria-label={`Enlarge Money Planner ${title.toLowerCase()} page`}><img src={image} alt={description} loading="lazy" /><span>{title} <span aria-hidden="true">↗</span></span></button>
+                ))}
+              </div>
+            </div>
+            <div className="project-caption"><div><h3>Money Planner</h3><p>A financial information website covering benefits, savings, and everyday money.</p></div><span className="tag">Website</span></div>
           </article>
         </section>
         <section className="visual-section">
@@ -105,4 +124,5 @@ function App() {
   )
 }
 export default App
+
 
