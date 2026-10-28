@@ -1,4 +1,4 @@
-﻿import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 import welcome from './assets/Group 8.png'
 import dashboard from './assets/iPhone 16 & 17 Pro Max - 10.png'
@@ -24,6 +24,26 @@ const pieces = [
 function App() {
   const dialog = useRef(null)
   const [selected, setSelected] = useState(null)
+  useEffect(() => {
+    const elements = document.querySelectorAll('.project, .visual-grid figure, .about, .connect, .section-heading')
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
+        }
+      })
+    }, { threshold: 0.08 })
+    elements.forEach((element) => {
+      element.classList.add('reveal')
+      observer.observe(element)
+    })
+    return () => {
+      observer.disconnect()
+      elements.forEach((element) => element.classList.remove('reveal', 'is-visible'))
+    }
+  }, [])
   function openImage(image, title) {
     setSelected({ image, title })
     dialog.current.showModal()
